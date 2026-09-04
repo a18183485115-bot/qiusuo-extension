@@ -1,0 +1,118 @@
+// 《求索》规则注册 - 适用于海豹骰子
+const qiusuoYaml = `
+name: qiusuo
+fullName: 求索
+author: 求索会
+version: "1.0.0"
+
+alias:
+  筋骨: [筋骨, phy, STR, str, 力量]
+  身手: [身手, dex, DEX, 敏捷]
+  智力: [智力, int, INT, 灵感]
+  灵觉: [灵觉, wis, WIS, pow, POW, 意志]
+  魅力: [魅力, cha, CHA, app, APP, 外貌]
+  气运: [气运, luk, LUK, 幸运]
+  格斗: [格斗, 斗殴, fight]
+  射击: [射击, shoot]
+  防御: [防御, defend]
+  闪避: [闪避, dodge]
+  潜行: [潜行, stealth]
+  侦查: [侦查, 侦察, spot]
+  学问: [学问, 博闻, knowledge]
+  历史: [历史, history]
+  民俗: [民俗, folk]
+  科学: [科学, science]
+  机关: [机关, trap]
+  急救: [急救, firstaid]
+  修复: [修复, repair]
+  生存: [生存, survival]
+  驯兽: [驯兽, tame]
+  社交: [社交, 交涉, persuade]
+  读心: [读心, 察言观色, insight]
+  灵视: [灵视, 灵知, lingzhi]
+  施法: [施法, 法术, 秘传, shifa]
+  冥想: [冥想, 内观, mingxiang]
+  命理: [命理, mingli]
+  附灵: [附灵, fuling]
+  敛气: [敛气, 藏气, lianqi]
+  封印: [封印, fengyin]
+  鉴定: [鉴定, 玄鉴, jianding]
+  画符: [画符, 制符, huafu]
+  布阵: [布阵, buzhen]
+  炼丹: [炼丹, liandan]
+  炼器: [炼器, lianqi]
+  破译: [破译, 释读, poyi]
+  拆解: [拆解, 工造, chaijie]
+  仪轨: [仪轨, 请神, yigui]
+
+derived:
+  hp: { expr: "floor(筋骨/5) + 等级", label: "HP" }
+  mp: { expr: "floor(灵觉/10) + 等级", label: "MP" }
+  spd: { expr: "floor(身手/5)", label: "移速" }
+  ini: { expr: "floor(身手/20)", label: "先攻" }
+
+template: |
+  筋骨: 0
+  身手: 0
+  智力: 0
+  灵觉: 0
+  魅力: 0
+  气运: 0
+  等级: 1
+  格斗: 0
+  射击: 0
+  防御: 0
+  闪避: 0
+  潜行: 0
+  侦查: 0
+  学问: 0
+  历史: 0
+  民俗: 0
+  科学: 0
+  机关: 0
+  急救: 0
+  修复: 0
+  生存: 0
+  驯兽: 0
+  社交: 0
+  读心: 0
+  灵视: 0
+  施法: 0
+  冥想: 0
+  命理: 0
+  附灵: 0
+  敛气: 0
+  封印: 0
+  鉴定: 0
+  画符: 0
+  布阵: 0
+  炼丹: 0
+  炼器: 0
+  破译: 0
+  拆解: 0
+  仪轨: 0
+
+showTemplate: |
+  【{角色名}】—— {职业} ——
+  等级：{等级}
+  筋骨：{筋骨} ｜ 身手：{身手} ｜ 智力：{智力}
+  灵觉：{灵觉} ｜ 魅力：{魅力} ｜ 气运：{气运}
+  【衍生属性】 HP：{hp} ｜ MP：{mp} ｜ 移速：{spd} ｜ 先攻：+{ini}
+  【技能】
+  基础：格斗{格斗} 射击{射击} 防御{防御} 闪避{闪避} 潜行{潜行} 侦查{侦查}
+        学问{学问} 历史{历史} 民俗{民俗} 科学{科学} 机关{机关} 急救{急救}
+        修复{修复} 生存{生存} 驯兽{驯兽} 社交{社交} 读心{读心}
+  玄艺：灵视{灵视} 施法{施法} 冥想{冥想} 命理{命理} 附灵{附灵} 敛气{敛气}
+        封印{封印} 鉴定{鉴定} 画符{画符} 布阵{布阵} 炼丹{炼丹} 炼器{炼器}
+        破译{破译} 拆解{拆解} 仪轨{仪轨}
+
+snTemplate: "{角色名}|Lv{等级}|HP{hp}|MP{mp}"
+defaultDice: "100"
+`;
+
+try {
+    seal.gameSystem.newTemplateByYaml(qiusuoYaml);
+    console.log('✅ 《求索》规则注册成功！使用 .set qiusuo 切换');
+} catch (e) {
+    console.error('❌ 注册失败:', e.message);
+}
